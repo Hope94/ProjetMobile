@@ -87,12 +87,13 @@
         android:id="@+id/textDesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="sjlfjjfjwejwejfjewrslfwejgew gwlfjejwqgj "
+        android:text="ldfblbljealjgjegj ljgjlgjregjewjrkg jdjgperjgoprwg jjdfe r"
         android:layout_marginTop="0dp"
         app:layout_constraintTop_toBottomOf="@+id/Desc"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="1dp"
+        android:padding="10dp"
         app:layout_constraintLeft_toLeftOf="@+id/Desc"
         app:layout_constraintVertical_bias="0.018" />
 </android.support.constraint.ConstraintLayout>
