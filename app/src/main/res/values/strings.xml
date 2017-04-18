@@ -2,10 +2,10 @@
     <string name="app_name">ProjetMobile</string>
     <string name="title_activity_detail_logement"></string>
     <string name="text_desc">DESCRIPTIF</string>
-    <string name="prix">PRIX</string>
-    <string name="adr">ADDRESSE</string>
-    <string name="type">TYPE</string>
-    <string name="note">NOTER L\'APPARTEMENT</string>
+    <string name="prix">100000 DA</string>
+    <string name="adr">Alger</string>
+    <string name="type">Villa</string>
+    <string name="note">NOTER LE LOGEMENT</string>
     <string name="note_button">CONFIRMER</string>
     <string name="comment_button">ENVOYER</string>
     <string name="comment">AJOUTER UN COMMENTAIRE</string>
@@ -24,7 +24,7 @@ Charges annuelles : 5220 euros.
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <integer-array name="img_id_arr">
-        <item>@drawable/p1</item>
+        <item>@drawable/a1</item>
         <item>@drawable/a2</item>
     </integer-array>
     <string name="settings">Settings</string>
