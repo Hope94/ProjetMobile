@@ -6,6 +6,9 @@
     <string name="adr">Alger</string>
     <string name="type">Villa</string>
     <string name="note">NOTER LE LOGEMENT</string>
+    <string name="noter">Noter le logement</string>
+    <string name="commenter">Ajouter un commentaire</string>
+
     <string name="note_button">CONFIRMER</string>
     <string name="comment_button">ENVOYER</string>
     <string name="comment">AJOUTER UN COMMENTAIRE</string>
