@@ -7,13 +7,22 @@
     <string name="type">Villa</string>
     <string name="note">NOTER LE LOGEMENT</string>
     <string name="noter">Noter le logement</string>
-    <string name="commenter">Ajouter un commentaire</string>
+    <string name="commenter">Commenter le logement</string>
+    <string name="avis">Donnez votre avis</string>
+    <string name="rdv_button">Ok</string>
+    <string name="text_date">"Vendredi du 13:00 à 16:00 21/04/2017"</string>
 
-    <string name="note_button">CONFIRMER</string>
-    <string name="comment_button">ENVOYER</string>
+s
+    <string-array
+        name="string_array_name">
+        <item>text_string</item>
+    </string-array>
+    <string name="note_button">Confirmer</string>
+    <string name="comment_button">Envoyer</string>
+    <string name="annul_button">Annuler</string>
     <string name="comment">AJOUTER UN COMMENTAIRE</string>
     <string name="comment_hint">Donnez-nous votre avis</string>
-    <string name="dispo">DISPONIBILITE DU PROPRIETAIRE</string>
+    <string name="dispo">Les visites disponibles</string>
     <string name="desc_dispo">Le 2 avril du 15 heure à 17 heure</string>
 
     <string name="large_text">
