@@ -28,7 +28,7 @@ public class RendezVous extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rendez_vous);
         Spinner spinner = (Spinner) findViewById(R.id.civil_spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.civil_array, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.civil_array, R.layout.spinner_item_2);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         toolbar = (Toolbar) findViewById(R.id.toolbar);

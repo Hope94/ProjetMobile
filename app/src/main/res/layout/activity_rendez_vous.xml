@@ -3,7 +3,8 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/pink_b">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -31,7 +32,10 @@
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_layout_nom"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout"
+            android:textColorHint="@color/white"
+            >
 
             <EditText
                 android:id="@+id/input_nom"
@@ -43,19 +47,24 @@
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_layout_prenom"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout"
+            android:textColorHint="@color/white">
 
             <EditText
                 android:id="@+id/input_prenom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/hint_prénom" />
+
+                android:hint="@string/hint_prénom"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_layout_email"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout"
+            android:textColorHint="@color/white">
 
             <EditText
                 android:id="@+id/input_email"
@@ -68,7 +77,9 @@
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_layout_phone"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout"
+            android:textColorHint="@color/white">
 
             <EditText
                 android:id="@+id/phone"
@@ -82,7 +93,9 @@
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_layout_code_postal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout"
+            android:textColorHint="@color/white">
 
             <EditText
                 android:id="@+id/code_postal"
@@ -97,7 +110,10 @@
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_layout_spinner"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout"
+            android:textColorHint="@color/white">
+
 
             <TextView
                 android:id="@+id/textView"
@@ -105,7 +121,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif"
-                android:text="@string/hint_civilité" />
+                android:text="@string/hint_civilité"
+                android:textColor="@color/white"/>
 
             <Spinner
                 android:id="@+id/civil_spinner"
@@ -117,9 +134,9 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/btn_valider"
-            android:background="@color/colorAccent"
+            android:background="@color/white"
             android:layout_marginTop="40dp"
-            android:textColor="@android:color/white"/>
+            android:textColor="@color/pink_b"/>
 
     </LinearLayout>
 
