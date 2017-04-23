@@ -39,7 +39,20 @@
 
         <activity
             android:name=".map_logement"
-            android:label="@string/title_activity_map_logement"></activity>
+            android:label="@string/title_activity_map_logement" />
+        <activity android:name=".RendezVous" />
+        <activity android:name=".ListRendezVous" />
+        <activity android:name=".UserType" />
+        <activity android:name=".Login" />
+        <activity
+            android:name=".Signup"
+            android:label="@string/title_activity_signup"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Annonces"
+            android:label="@string/title_activity_annonces"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".AnnoncesActivity"></activity>
     </application>
 
 </manifest>

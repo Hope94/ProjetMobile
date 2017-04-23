@@ -299,5 +299,6 @@
         android:textColor="@color/theme_window_background"
         android:background="@color/colorAccent"
         tools:targetApi="lollipop"
+        android:onClick="onClickRendezVous"
        />
 </android.support.design.widget.CoordinatorLayout>

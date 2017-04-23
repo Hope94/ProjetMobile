@@ -19,15 +19,14 @@
     </style>
 
 
-
-    <style name="ToolbarPopUp" parent ="ThemeOverlay.AppCompat.Light">
+    <style name="ToolbarPopUp" parent="ThemeOverlay.AppCompat.Light">
         <item name="android:background">@color/theme_window_background</item>
     </style>
 
     <style name="TextAppearance.AppCompat.Title" parent="TextAppearance.AppCompat.Title">
         <item name="android:textColor">@color/primary_text</item>
         <item name="android:textSize">@dimen/textsize_m</item>
-ff
+
     </style>
 
     <style name="TextAppearance.Small" parent="TextAppearance.AppCompat.Small">
@@ -42,6 +41,7 @@ ff
         <item name="android:paddingBottom">16dp</item>
         <item name="android:orientation">vertical</item>
     </style>
+
     <style name="Widget.CardContent1" parent="android:Widget">
         <item name="android:paddingLeft">5dp</item>
         <item name="android:paddingRight">5dp</item>
@@ -58,15 +58,17 @@ ff
     <!-- Base application theme.-->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:background">@color/white</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
@@ -75,4 +77,19 @@ ff
         <item name="colorControlNormal">@color/hotpink</item>
         <item name="colorControlActivated">@color/pink</item>
     </style>
+
+    <style name="AppTheme.Light.Dialog" parent="Theme.AppCompat.Dialog">
+        <item name="colorAccent">@color/primary</item>
+        <item name="android:textColor">@color/primary_dark</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="TransAppTheme" parent="AppTheme" />
+
+    <style name="AppTheme.Dark.Dialog" parent="Theme.AppCompat.Dialog">
+        <item name="colorAccent">@color/white</item>
+        <item name="android:textColorPrimary">@color/iron</item>
+        <item name="android:background">@color/primary</item>
+    </style>
+
 </resources>

@@ -82,6 +82,12 @@ public class DetailLog extends AppCompatActivity {
 
 
     }
+    public void onClickRendezVous(View view){
+
+        Intent intent=new Intent(DetailLog.this,RendezVous.class);
+        startActivity(intent);
+
+    }
 
 
 
