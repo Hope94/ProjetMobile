@@ -48,11 +48,8 @@
             android:name=".Signup"
             android:label="@string/title_activity_signup"
             android:theme="@style/AppTheme" />
-        <activity
-            android:name=".Annonces"
-            android:label="@string/title_activity_annonces"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".AnnoncesActivity"></activity>
+
+        <activity android:name=".AnnoncesActivity" />
     </application>
 
 </manifest>

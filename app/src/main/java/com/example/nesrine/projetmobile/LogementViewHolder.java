@@ -35,7 +35,7 @@ public class LogementViewHolder extends RecyclerView.ViewHolder implements View.
     //puis ajouter une fonction pour remplir la cellule en fonction d'un Logement
     public void bind(Logement myLogement){
         tViewRegion.setText(myLogement.getRegion());
-        tViewPrix.setText(String.valueOf(myLogement.getPrix()));
+        tViewPrix.setText(String.valueOf(myLogement.getPrix())+" DA");
         tViewType.setText(myLogement.getType());
         imView.setImageResource(myLogement.getImage());
     }

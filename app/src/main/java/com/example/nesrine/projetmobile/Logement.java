@@ -9,7 +9,7 @@ public class Logement {
     private String id;
     private String type;
     private String region;
-    private double prix;
+    private int prix;
     private String proprietaire;
     private int image;
 
@@ -17,7 +17,7 @@ public class Logement {
         return prix;
     }
 
-    public Logement(String id, String type, String region, double prix, String proprietaire, int image) {
+    public Logement(String id, String type, String region, int prix, String proprietaire, int image) {
         this.id = id;
         this.type = type;
         this.region = region;
@@ -34,11 +34,11 @@ public class Logement {
         this.image = image;
     }
 
-    public void setPrix(double prix) {
+    public void setPrix(int prix) {
         this.prix = prix;
     }
 
-    public Logement(String id, String type, String region, double prix, String proprietaire) {
+    public Logement(String id, String type, String region, int prix, String proprietaire) {
         this.id = id;
         this.type = type;
         this.region = region;

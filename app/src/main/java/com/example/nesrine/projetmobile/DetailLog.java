@@ -84,11 +84,27 @@ public class DetailLog extends AppCompatActivity {
     }
     public void onClickRendezVous(View view){
 
-        Intent intent=new Intent(DetailLog.this,RendezVous.class);
-        startActivity(intent);
+        //Intent intent=new Intent(DetailLog.this,RendezVous.class);
+        //startActivity(intent);
+        new MaterialDialog.Builder(this)
+                .title(R.string.rdv_desc)
+                .items(R.array.rdv_list)
+                .itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallbackSingleChoice() {
+                    @Override
+                    public boolean onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
+                        /**
+                         * If you use alwaysCallSingleChoiceCallback(), which is discussed below,
+                         * returning false here won't allow the newly selected radio button to actually be selected.
+                         **/
+                        return true;
+                    }
+                })
+                .positiveText(R.string.rdv_btn)
+                .negativeText(R.string.annul_button)
+                .show();
+
 
     }
-
 
 
     @Override

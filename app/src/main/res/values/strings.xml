@@ -10,11 +10,18 @@
     <string name="commenter">Commenter le logement</string>
     <string name="avis">Donnez votre avis</string>
     <string name="rdv_button">Ok</string>
+    <string name="rdv_desc">Sélectionnez un rendez-vous</string>
+    <string name="rdv_btn">Valider</string>
+    <string name="annonce_nom">Annonce appartement alger</string>
     <string name="text_date">"Vendredi du 13:00 à 16:00 21/04/2017"</string>
     <string-array name="civil_array">
         <item>M.</item>
         <item>MME</item>
         <item>MLLE</item>
+    </string-array>
+    <string-array name="rdv_list">
+        <item>Vendredi du 13:00 à 16:00 21/04/2017</item>
+        <item>Samedi du 13:00 à 16:00 21/04/2017</item>
     </string-array>
     <string name="username">Username</string>
     <string name="date">Mar, 02 Mai 2017</string>
