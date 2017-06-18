@@ -9,12 +9,23 @@ public class ObjetRendezVous  {
     private String date;
     private  String heure;
     private String status;
+    private String nomAnn;
+    private String region;
 
-    public ObjetRendezVous(String userName, String date, String heure, String status) {
-        this.userName = userName;
-        this.date = date;
-        this.heure = heure;
-        this.status = status;
+    public void setNomAnn(String nomAnn) {
+        this.nomAnn = nomAnn;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    public String getNomAnn() {
+        return nomAnn;
+    }
+
+    public String getRegion() {
+        return region;
     }
 
     public void setUserName(String userName) {

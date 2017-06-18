@@ -9,14 +9,36 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.json.JSONStringer;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Login extends AppCompatActivity {
 
     private static final String TAG = "Login";
     private static final int REQUEST_SIGNUP = 0;
-
+    private String url="http://192.168.1.3:8080/getConnexion";
+    private Boolean connected;
+    private User user;
 
     EditText _emailText;
     EditText _passwordText ;
@@ -40,6 +62,7 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 login();
+
             }
         });
 
@@ -50,6 +73,7 @@ public class Login extends AppCompatActivity {
                 // Start the Signup activity
                 Intent intent = new Intent(getApplicationContext(), Signup.class);
                 startActivityForResult(intent, REQUEST_SIGNUP);
+
             }
         });
     }
@@ -71,10 +95,13 @@ public class Login extends AppCompatActivity {
 
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
+        user=new User();
+        user.setEmail(email);
+        user.setMot_de_passe(password);
 
         // TODO: Implement your own authentication logic here.
 
-        new android.os.Handler().postDelayed(
+      /* new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
                         // On complete call either onLoginSuccess or onLoginFailed
@@ -82,9 +109,30 @@ public class Login extends AppCompatActivity {
                         // onLoginFailed();
                         progressDialog.dismiss();
                     }
-                }, 3000);
-        Intent intent=new Intent(Login.this,UserType.class);
-        startActivity(intent);
+                }, 3000);*/
+        RequestQueue queue= Volley.newRequestQueue(this);
+        StringRequest request = new StringRequest(Request.Method.GET, url+"?email="+email+"&password="+password,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        Toast.makeText(Login.this,s,Toast.LENGTH_SHORT).show();
+
+                        if(s.equals("\"ok\"")){
+
+                             Intent intent = new Intent(getApplicationContext(),UserType.class);
+                             startActivity(intent);
+                        }else{
+                            Toast.makeText(Login.this,"Erreur dans votre email ou mot de passe",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Toast.makeText(Login.this,"Error",Toast.LENGTH_SHORT).show();
+            }
+        });
+        queue.add(request);
+
     }
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_SIGNUP) {
@@ -110,7 +158,6 @@ public class Login extends AppCompatActivity {
 
     public void onLoginFailed() {
         Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
-
         _loginButton.setEnabled(true);
     }
 

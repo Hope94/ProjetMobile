@@ -19,8 +19,11 @@ public class MyRendezVousHolder extends  RecyclerView.ViewHolder implements View
     private TextView date;
     private TextView time;
     private TextView status;
+    private TextView region;
+    private TextView anno;
     private ImageView btn_accept;
     private ImageView   btn_reject;
+
 
 
 
@@ -31,6 +34,8 @@ public class MyRendezVousHolder extends  RecyclerView.ViewHolder implements View
         date= (TextView) itemView.findViewById(R.id.text_date);
         time= (TextView) itemView.findViewById(R.id.text_heure);
         status= (TextView) itemView.findViewById(R.id.text_status);
+        anno=(TextView) itemView.findViewById(R.id.text_annonce);
+        region=(TextView)itemView.findViewById(R.id.text_adr);
         btn_accept=(ImageView) itemView.findViewById(R.id.accept) ;
         btn_reject=(ImageView) itemView.findViewById(R.id.refuse) ;
 
@@ -46,16 +51,18 @@ public class MyRendezVousHolder extends  RecyclerView.ViewHolder implements View
         date.setText(myObject.getDate());
         time.setText(myObject.getHeure());
         status.setText(myObject.getStatus());
+        region.setText(myObject.getRegion());
+        anno.setText(myObject.getNomAnn());
 
     }
     @Override
     public void onClick(View v) {
 
         if (v.getId() == btn_accept.getId()){
-            status.setText("Validé");
+            status.setText("Valide");
         }
         if (v.getId() == btn_reject.getId()){
-            status.setText("Rejecté");
+            status.setText("Invalide");
         }
 
 
