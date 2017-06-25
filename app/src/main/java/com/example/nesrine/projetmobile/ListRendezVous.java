@@ -33,7 +33,7 @@ import java.util.concurrent.TimeUnit;
 
 public class ListRendezVous extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private  String url="http://192.168.1.3:8080/getRendezVous";
+    private  String url="http://192.168.1.2:8080/getRendezVous";
     ProgressBar progressBar;
     Toolbar toolbar;
     private List<ObjetRendezVous> listRendezVous;

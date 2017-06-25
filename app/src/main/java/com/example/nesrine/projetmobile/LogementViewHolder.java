@@ -37,7 +37,7 @@ public class LogementViewHolder extends RecyclerView.ViewHolder implements View.
         tViewRegion.setText(myLogement.getRegion());
         tViewPrix.setText(String.valueOf(myLogement.getPrix())+" DA");
         tViewType.setText(myLogement.getType());
-        imView.setImageResource(myLogement.getImage());
+        //imView.setImageResource(myLogement.getImage());
     }
     @Override
     public void onClick(View v) {

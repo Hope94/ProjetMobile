@@ -10,40 +10,49 @@ public class Logement {
     private String type;
     private String region;
     private int prix;
-    private String proprietaire;
-    private int image;
+    private double lat;
+    private double lng;
+    private String mainImage;
+    private String[] listDetailImages;
 
+    public String getMainImage() {
+        return mainImage;
+    }
+
+    public void setMainImage(String mainImage) {
+        this.mainImage = mainImage;
+    }
+
+    public String[] getListDetailImages() {
+        return listDetailImages;
+    }
+
+    public void setListDetailImages(String[] listDetailImages) {
+        this.listDetailImages = listDetailImages;
+    }
+
+
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public double getLng() {
+        return lng;
+    }
+
+    public void setLng(double lng) {
+        this.lng = lng;
+    }
     public double getPrix() {
         return prix;
     }
 
-    public Logement(String id, String type, String region, int prix, String proprietaire, int image) {
-        this.id = id;
-        this.type = type;
-        this.region = region;
-        this.prix = prix;
-        this.proprietaire = proprietaire;
-        this.image = image;
-    }
-
-    public int getImage() {
-        return image;
-    }
-
-    public void setImage(int image) {
-        this.image = image;
-    }
-
     public void setPrix(int prix) {
         this.prix = prix;
-    }
-
-    public Logement(String id, String type, String region, int prix, String proprietaire) {
-        this.id = id;
-        this.type = type;
-        this.region = region;
-        this.prix = prix;
-        this.proprietaire = proprietaire;
     }
 
     public String getId() {
@@ -70,11 +79,4 @@ public class Logement {
         this.region = region;
     }
 
-    public String getProprietaire() {
-        return proprietaire;
-    }
-
-    public void setProprietaire(String proprietaire) {
-        this.proprietaire = proprietaire;
-    }
 }

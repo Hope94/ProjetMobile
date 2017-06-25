@@ -13,25 +13,88 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+
+import org.json.JSONArray;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class AnnoncesActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private List<Logement> logements = new ArrayList<>();
     private  LogementAdapter adapter;
+    private  Spinner spinner;
+    private Spinner spinnerRegion;
+    private String type;
+    private String region;
+    private  String url="http://192.168.1.2:8080/getLogements";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_annonces);
         setContentView(R.layout.activity_annonces);
-        ajouterLogement();
         recyclerView = (RecyclerView) findViewById(R.id.rvAnnonces);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-         adapter = new LogementAdapter(logements);
 
-        recyclerView.setAdapter(adapter);
+
+        /*************SPINNER TYPE *****/
+        spinner = (Spinner) findViewById(R.id.spinner);
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this,R.layout.spinner_item);
+        spinnerAdapter.add("Villa");
+        spinnerAdapter.add("Appartement");
+        spinnerAdapter.add("Studio");
+        spinnerAdapter.add("Duplex");
+        spinner.setAdapter(spinnerAdapter);
+
+
+        /*************SPINNER REGION *****/
+        spinnerRegion = (Spinner) findViewById(R.id.spinnerRegion);
+        ArrayAdapter<String> spinnerRegionAdapter =
+                new ArrayAdapter<>(this, R.layout.spinner_item);
+        spinnerRegionAdapter.add("Alger-est");
+        spinnerRegionAdapter.add("Alger-ouest");
+
+        spinnerRegion.setAdapter(spinnerRegionAdapter);
+
+        ajouterLogement();
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+               ajouterLogement();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
+        spinnerRegion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                ajouterLogement();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
+       // recyclerView.setAdapter(adapter);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -40,37 +103,31 @@ public class AnnoncesActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-        /*************SPINNER TYPE *****/
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this,R.layout.spinner_item);
-        spinnerAdapter.add("Appartement");
-        spinnerAdapter.add("Studio");
-        spinnerAdapter.add("Villa");
-        spinnerAdapter.add("Duplex");
-        spinner.setAdapter(spinnerAdapter);
-
-
-        /*************SPINNER REGION *****/
-        Spinner spinnerRegion = (Spinner) findViewById(R.id.spinnerRegion);
-        ArrayAdapter<String> spinnerRegionAdapter =
-                new ArrayAdapter<>(this, R.layout.spinner_item);
-        spinnerRegionAdapter.add("ALGER");
-        spinnerRegionAdapter.add("ANNABA");
-        spinnerRegionAdapter.add("ORAN");
-
-        spinnerRegion.setAdapter(spinnerRegionAdapter);
 
 
     }
     private void ajouterLogement() {
-        logements.add(new Logement("00001","Appartement","ALGER",75000,"",R.drawable.a1));
-        logements.add(new Logement("00002","Villa","ANNABA",88000,"",R.drawable.a2));
-        logements.add(new Logement("00003","Appartement","ALGER",32000,"",R.drawable.a1));
-        logements.add(new Logement("00004","Studio","ORAN",28000,"",R.drawable.a2));
-        logements.add(new Logement("00005","Duplex","ANNABA",87000,"",R.drawable.a1));
-        logements.add(new Logement("00006","Appartement","ORAN",64000,"",R.drawable.a1));
-        logements.add(new Logement("00007","Duplex","ALGER",100000,"",R.drawable.a1));
-        logements.add(new Logement("00008","Appartement","Annaba",44000,"",R.drawable.a1));
+
+       type=spinner.getSelectedItem().toString();
+        region=spinnerRegion.getSelectedItem().toString();
+        RequestQueue queue= Volley.newRequestQueue(this);
+        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(url+"?type="+type+"&region="+region, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray jsonArray) {
+                logements=new ArrayList<Logement>();
+                Gson gson=new Gson();
+                logements= Arrays.asList(gson.fromJson(jsonArray.toString(), Logement[].class));
+                recyclerView.setAdapter(new LogementAdapter(logements));
+            }
+        },new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Toast.makeText(AnnoncesActivity.this,volleyError.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        queue.add(jsonArrayRequest);
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
