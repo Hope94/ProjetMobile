@@ -4,34 +4,55 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TextInputEditText;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewDebug;
 import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
+import com.chabbal.slidingdotsplash.SlidingSplashView;
+import com.google.gson.Gson;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DetailLog extends AppCompatActivity {
+public class DetailLog extends AppCompatActivity implements ViewPager.OnPageChangeListener {
     private Logement logement;
+    private  TextView textSummary;
+    private ImageView detailImage;
+    private String url="http://192.168.1.2:8080/getDetailLogement";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_log);
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
 
         //afficher le bouton retour
@@ -47,12 +68,20 @@ public class DetailLog extends AppCompatActivity {
 
        // list_dates.setAdapter(adapter);
         // Button btn_map= (Button) findViewById(R.id.map_btn);
+        SlidingSplashView splashView  = (SlidingSplashView) findViewById(R.id.splash);
+
+        splashView.addOnPageChangeListener(this);
+        textSummary=(TextView) findViewById(R.id.textDesciptif);
+        logement = (Logement) getIntent().getSerializableExtra("logement");
+        displayBasicDetail();
+        getLogementDetails();
 
 
     }
     public void onClickMap(View view){
 
         Intent intent=new Intent(DetailLog.this,map_logement.class);
+        intent.putExtra("logement",logement);
         startActivity(intent);
     }
     public void onClickRate(View view){
@@ -126,6 +155,53 @@ public class DetailLog extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    private void displayBasicDetail(){
+
+        TextView textPrix = (TextView) findViewById(R.id.text_prix);
+        TextView textType = (TextView) findViewById(R.id.text_type);
+        TextView textRegion = (TextView) findViewById(R.id.text_region);
+        textPrix.setText(Integer.toString((int) logement.getPrix())+" DA");
+        textRegion.setText(logement.getRegion());
+        textType.setText(logement.getType());
+    }
+
+    private void getLogementDetails(){
+        RequestQueue queue = queue= Volley.newRequestQueue(this);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url+"?id_log="+logement.getId(), null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject jsonObject) {
+                Gson gson = new Gson();
+                Logement logementDetail = gson.fromJson(jsonObject.toString(), Logement.class);
+                textSummary.setText(logementDetail.getDescriptif());
+                /*Glide.with(DetailLog.this).load(logementDetail.getListDetailImages()[0])
+                        .placeholder(R.drawable.ic_cloud).
+                        skipMemoryCache(true).into(detailImage);*/
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Toast.makeText(DetailLog.this, "Erreur", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        queue.add(jsonObjectRequest);
+
+    }
 
 
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+        Log.d("OnPageScrolled", String.valueOf(position));
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        Log.d("OnPageSelected", String.valueOf(position));
+
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+        Log.d("PageScrollStateChanged", String.valueOf(state));
+    }
 }

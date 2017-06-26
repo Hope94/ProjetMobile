@@ -18,6 +18,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class map_logement extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private Logement logement;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,7 @@ public class map_logement extends AppCompatActivity implements OnMapReadyCallbac
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(" ");
-
+        logement = (Logement) getIntent().getSerializableExtra("logement");
 
 
 
@@ -56,7 +57,7 @@ public class map_logement extends AppCompatActivity implements OnMapReadyCallbac
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng alger= new LatLng(36.726017,3.082667);
+        LatLng alger= new LatLng(logement.getLat(),logement.getLng());
         mMap.addMarker(new MarkerOptions().position(alger).title("Alger"));
         mMap.getUiSettings().setZoomGesturesEnabled(true);
         //mMap.moveCamera(CameraUpdateFactory.newLatLng(alger));

@@ -1,11 +1,15 @@
 package com.example.nesrine.projetmobile;
 
+import java.io.Serializable;
+
+import rx.observers.SerializedObserver;
+
 /**
  * Created by Nesrine on 23/04/2017.
  */
 
 
-public class Logement {
+public class Logement implements Serializable{
     private String id;
     private String type;
     private String region;

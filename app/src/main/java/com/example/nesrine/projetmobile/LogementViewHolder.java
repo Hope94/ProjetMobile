@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -25,6 +26,8 @@ public class LogementViewHolder extends RecyclerView.ViewHolder //implements Vie
     private TextView tViewType;
     private ImageView imView;
     private Context context=null;
+    public View container;
+   // private Logement logement;
     //private String url1="http://www.eiffage-immobilier.fr/files/live/sites/eiffage-immo/files/contributed/visuels-programmes/appartement-neuf-nice-stella-rocca-diapo4.jpg";
     //private String url="http://af9e83bc.ngrok.io/";
 
@@ -36,6 +39,7 @@ public class LogementViewHolder extends RecyclerView.ViewHolder //implements Vie
         tViewPrix = (TextView) itemView.findViewById(R.id.textViewPrix);
         tViewType= (TextView) itemView.findViewById(R.id.textViewType);
         imView = (ImageView) itemView.findViewById(R.id.imageView2);
+        container=itemView;
         //itemView.setOnClickListener(this);
     }
 
@@ -48,12 +52,14 @@ public class LogementViewHolder extends RecyclerView.ViewHolder //implements Vie
 
         Glide.with(context).load(myLogement.getMainImage()).placeholder(R.drawable.ic_cloud).skipMemoryCache(true).into(imView);
         //imView.setImageResource(myLogement.getImage());
+        //logement=myLogement;
     }
-  /*  @Override
+    /*@Override
     public void onClick(View v) {
         Context context = v.getContext();
         Intent intent = new Intent(context, DetailLog.class);
-        context.startActivity(intent);
+        Toast.makeText(context,getOldPosition(),Toast.LENGTH_SHORT).show();
+        //context.startActivity(intent);
 
     }*/
 

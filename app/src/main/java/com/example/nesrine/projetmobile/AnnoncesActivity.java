@@ -8,8 +8,10 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -29,7 +31,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class AnnoncesActivity extends AppCompatActivity {
+public class AnnoncesActivity extends AppCompatActivity  {
     private RecyclerView recyclerView;
     private List<Logement> logements = new ArrayList<>();
     private  LogementAdapter adapter;
@@ -37,7 +39,7 @@ public class AnnoncesActivity extends AppCompatActivity {
     private Spinner spinnerRegion;
     private String type;
     private String region;
-    private  String url="http://192.168.1.3:8080/getLogements";
+    private  String url="http://192.168.1.2:8080/getLogements";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,7 +117,17 @@ public class AnnoncesActivity extends AppCompatActivity {
                 logements=new ArrayList<Logement>();
                 Gson gson=new Gson();
                 logements= Arrays.asList(gson.fromJson(jsonArray.toString(), Logement[].class));
-                recyclerView.setAdapter(new LogementAdapter(logements));
+                recyclerView.setAdapter(new LogementAdapter(logements,new LogementAdapter.OnItemClickListener() {
+
+                    @Override
+                    public void onItemClick(View view, int position) {
+
+                        ///list item was clicked
+                        Intent intent = new Intent(AnnoncesActivity.this,DetailLog.class);
+                        intent.putExtra("logement",logements.get(position));
+                        startActivity(intent);
+                    }
+                }));
             }
         },new Response.ErrorListener() {
             @Override

@@ -48,6 +48,7 @@
                 app:imageResources="@array/img_id_arr" />
 
 
+
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
@@ -107,6 +108,7 @@
                                     android:src="@drawable/ic_shortcut_price3" />
 
                                 <TextView
+                                    android:id="@+id/text_prix"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/prix"
@@ -127,6 +129,7 @@
                                     android:src="@drawable/ic_shortcut_type2" />
 
                                 <TextView
+                                    android:id="@+id/text_type"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
@@ -149,6 +152,7 @@
                                     android:src="@drawable/ic_shortcut_region3" />
 
                                 <TextView
+                                    android:id="@+id/text_region"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
@@ -179,6 +183,7 @@
                         android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
                     <TextView
+                        android:id="@+id/textDesciptif"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/lorem_ipsum" />
