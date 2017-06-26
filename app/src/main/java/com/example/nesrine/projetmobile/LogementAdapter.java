@@ -15,7 +15,9 @@ import java.util.List;
  * Created by Imène on 22/04/2017.
  */
 
-public class LogementAdapter extends RecyclerView.Adapter<LogementViewHolder> {
+public class LogementAdapter extends RecyclerView.Adapter<LogementViewHolder>
+      //  implements View.OnClickListener
+{
     List<Logement> list;
 
 
@@ -36,6 +38,7 @@ public class LogementAdapter extends RecyclerView.Adapter<LogementViewHolder> {
     public void onBindViewHolder(LogementViewHolder holder, int position) {
         Logement myLogement = list.get(position);
         holder.bind(myLogement);
+
     }
 
     @Override

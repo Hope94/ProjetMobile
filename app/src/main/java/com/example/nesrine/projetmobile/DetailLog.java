@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DetailLog extends AppCompatActivity {
+    private Logement logement;
 
 
     @Override

@@ -36,7 +36,7 @@ public class Login extends AppCompatActivity {
 
     private static final String TAG = "Login";
     private static final int REQUEST_SIGNUP = 0;
-    private String url="http://192.168.1.2:8080/getConnexion";
+    private String url="http://192.168.1.3:8080/getConnexion";
     private Boolean connected;
     private User user;
 

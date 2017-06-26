@@ -1,5 +1,6 @@
 package com.example.nesrine.projetmobile;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -36,7 +37,7 @@ public class AnnoncesActivity extends AppCompatActivity {
     private Spinner spinnerRegion;
     private String type;
     private String region;
-    private  String url="http://192.168.1.2:8080/getLogements";
+    private  String url="http://192.168.1.3:8080/getLogements";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,9 +102,6 @@ public class AnnoncesActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("");
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
-
 
     }
     private void ajouterLogement() {
