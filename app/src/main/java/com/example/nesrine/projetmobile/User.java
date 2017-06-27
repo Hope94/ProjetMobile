@@ -1,13 +1,15 @@
 package com.example.nesrine.projetmobile;
 
+import java.io.Serializable;
+
 /**
  * Created by Nesrine on 16/06/2017.
  */
 
-public class User {
+public class User implements Serializable {
     private String email;
     private String mot_de_passe;
-    private String username;
+    private String status;
 
 
     public void setEmail(String email) {
@@ -18,10 +20,6 @@ public class User {
         this.mot_de_passe = mot_de_passe;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -30,7 +28,11 @@ public class User {
         return mot_de_passe;
     }
 
-    public String getUsername() {
-        return username;
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

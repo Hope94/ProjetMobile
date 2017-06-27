@@ -59,7 +59,7 @@ public class MyRendezVousHolder extends  RecyclerView.ViewHolder implements View
     public void onClick(View v) {
 
         if (v.getId() == btn_accept.getId()){
-            status.setText("Valide");
+            status.setText("Valide   ");
         }
         if (v.getId() == btn_reject.getId()){
             status.setText("Invalide");

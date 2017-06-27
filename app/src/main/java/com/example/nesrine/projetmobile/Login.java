@@ -1,5 +1,6 @@
 package com.example.nesrine.projetmobile;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
@@ -119,8 +120,13 @@ public class Login extends AppCompatActivity {
 
                         if(s.equals("\"ok\"")){
 
-                             Intent intent = new Intent(getApplicationContext(),UserType.class);
-                             startActivity(intent);
+                             //Intent intent = new Intent(getApplicationContext(),UserType.class);
+                             //startActivity(intent);
+                            user.setStatus("connected");
+                            Intent returnIntent = new Intent();
+                            returnIntent.putExtra("user",user);
+                            setResult(Activity.RESULT_OK,returnIntent);
+                            finish();
                         }else{
                             Toast.makeText(Login.this,"Erreur dans votre email ou mot de passe",Toast.LENGTH_SHORT).show();
                         }

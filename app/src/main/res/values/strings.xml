@@ -14,11 +14,15 @@
     <string name="rdv_btn">Valider</string>
     <string name="annonce_nom">Annonce appartement alger</string>
     <string name="text_date">"Vendredi du 13:00 à 16:00 21/04/2017"</string>
+    <string name="date1">%1$s</string>
+    <string name="date2">%1$s</string>
+
     <string-array name="civil_array">
         <item>M.</item>
         <item>MME</item>
         <item>MLLE</item>
     </string-array>
+
     <string-array name="rdv_list">
         <item>Vendredi du 13:00 à 16:00 21/04/2017</item>
         <item>Samedi du 13:00 à 16:00 21/04/2017</item>
