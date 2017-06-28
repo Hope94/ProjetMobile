@@ -14,15 +14,17 @@ import android.widget.Toast;
  * Created by Nesrine on 22/04/2017.
  */
 
-public class MyRendezVousHolder extends  RecyclerView.ViewHolder implements View.OnClickListener {
+public class MyRendezVousHolder extends  RecyclerView.ViewHolder // implements View.OnClickListener
+{
     private TextView userName;
     private TextView date;
     private TextView time;
     private TextView status;
     private TextView region;
     private TextView anno;
-    private ImageView btn_accept;
-    private ImageView   btn_reject;
+    public ImageView btn_accept;
+    public ImageView btn_reject;
+    public View container;
 
 
 
@@ -39,8 +41,9 @@ public class MyRendezVousHolder extends  RecyclerView.ViewHolder implements View
         btn_accept=(ImageView) itemView.findViewById(R.id.accept) ;
         btn_reject=(ImageView) itemView.findViewById(R.id.refuse) ;
 
-        btn_accept.setOnClickListener(this);
-        btn_reject.setOnClickListener(this);
+      //  btn_accept.setOnClickListener(this);
+        // btn_reject.setOnClickListener(this);
+        container=itemView;
       //  btn_reject.setOnClickListener(this);
 
 
@@ -55,7 +58,7 @@ public class MyRendezVousHolder extends  RecyclerView.ViewHolder implements View
         anno.setText(myObject.getNomAnn());
 
     }
-    @Override
+   /* @Override
     public void onClick(View v) {
 
         if (v.getId() == btn_accept.getId()){
@@ -65,7 +68,9 @@ public class MyRendezVousHolder extends  RecyclerView.ViewHolder implements View
             status.setText("Invalide");
         }
 
+    }*/
 
 
-    }
+
+
 }

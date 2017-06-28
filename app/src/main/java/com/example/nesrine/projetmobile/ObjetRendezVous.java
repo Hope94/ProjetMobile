@@ -5,6 +5,7 @@ package com.example.nesrine.projetmobile;
  */
 
 public class ObjetRendezVous  {
+    private String id_rdv;
     private String userName;
     private String date;
     private  String heure;
@@ -58,5 +59,13 @@ public class ObjetRendezVous  {
 
     public String getStatus() {
         return status;
+    }
+
+    public String getId_rdv() {
+        return id_rdv;
+    }
+
+    public void setId_rdv(String id_rdv) {
+        this.id_rdv = id_rdv;
     }
 }

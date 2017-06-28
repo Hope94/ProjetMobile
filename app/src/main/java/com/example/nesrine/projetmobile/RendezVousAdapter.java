@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -13,11 +14,17 @@ import java.util.List;
  */
 
 public class RendezVousAdapter extends  RecyclerView.Adapter<MyRendezVousHolder>{
-    List<ObjetRendezVous> list;
+    public List<ObjetRendezVous> list;
+    private OnItemClickListener mOnItemClickListener;
 
-    public RendezVousAdapter(List<ObjetRendezVous> list) {
+
+    public interface OnItemClickListener {
+        public void onItemClick(View view, int position);
+    }
+
+    public RendezVousAdapter(List<ObjetRendezVous> list,OnItemClickListener onItemClickListener) {
         this.list = list;
-
+        mOnItemClickListener=onItemClickListener;
     }
 
     @Override
@@ -28,8 +35,33 @@ public class RendezVousAdapter extends  RecyclerView.Adapter<MyRendezVousHolder>
 
     //c'est ici que nous allons remplir notre cellule avec le texte/image de chaque MyObjects
     @Override
-    public void onBindViewHolder(MyRendezVousHolder myViewHolder, int position) {
-        ObjetRendezVous myObject = list.get(position);
+    public void onBindViewHolder(MyRendezVousHolder myViewHolder, final int position) {
+        final ObjetRendezVous myObject = list.get(position);
+        myViewHolder.container.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                mOnItemClickListener.onItemClick(v, position);
+            }
+        });
+
+        myViewHolder.btn_accept.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(v.getContext(),"Accept CLicked",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        myViewHolder.btn_reject.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(v.getContext(),"Reject CLicked",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
         myViewHolder.bind(myObject);
     }
 

@@ -116,12 +116,13 @@ public class Login extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
-                        Toast.makeText(Login.this,s,Toast.LENGTH_SHORT).show();
+
 
                         if(s.equals("\"ok\"")){
 
                              //Intent intent = new Intent(getApplicationContext(),UserType.class);
                              //startActivity(intent);
+                            Toast.makeText(Login.this,"Vous êtes connecté",Toast.LENGTH_SHORT).show();
                             user.setStatus("connected");
                             Intent returnIntent = new Intent();
                             returnIntent.putExtra("user",user);
@@ -129,6 +130,7 @@ public class Login extends AppCompatActivity {
                             finish();
                         }else{
                             Toast.makeText(Login.this,"Erreur dans votre email ou mot de passe",Toast.LENGTH_SHORT).show();
+                            finish();
                         }
                     }
                 }, new Response.ErrorListener() {

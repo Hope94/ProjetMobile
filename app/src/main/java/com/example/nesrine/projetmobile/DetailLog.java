@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.provider.Telephony;
+import android.support.annotation.NonNull;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.view.ViewPager;
@@ -21,14 +23,19 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.chabbal.slidingdotsplash.SlidingSplashView;
@@ -38,7 +45,9 @@ import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DetailLog extends AppCompatActivity implements ViewPager.OnPageChangeListener {
     private Logement logement;
@@ -50,6 +59,10 @@ public class DetailLog extends AppCompatActivity implements ViewPager.OnPageChan
     private String connected="FAILED";
     private String url="http://192.168.1.2:8080/getDetailLogement";
     private String url_dates="http://192.168.1.2:8080/getDates";
+    private String url_rendezvous="http://192.168.1.2:8080/postRendezVous";
+    private String url_rate="http://192.168.1.2:8080/postRate";
+    private String url_comment="http://192.168.1.2:8080/postComment";
+    private SharedPref shared;
 
 
 
@@ -84,6 +97,7 @@ public class DetailLog extends AppCompatActivity implements ViewPager.OnPageChan
         logement = (Logement) getIntent().getSerializableExtra("logement");
         displayBasicDetail();
         getLogementDetails();
+        shared=new SharedPref(this,"client");
     }
     public void onClickMap(View view){
 
@@ -92,21 +106,111 @@ public class DetailLog extends AppCompatActivity implements ViewPager.OnPageChan
         startActivity(intent);
     }
     public void onClickRate(View view){
-         new MaterialDialog.Builder(this)
-                .title(R.string.noter)
-                .customView(R.layout.custom_rate_bar,false)
-                .positiveText(R.string.note_button)
-                .negativeText(R.string.annul_button)
-                .show();
+        if(shared.isConnected()) {
+
+
+            final String[] rating = {null};
+            MaterialDialog dialog = new MaterialDialog.Builder(this)
+                    .title(R.string.noter)
+                    .customView(R.layout.custom_rate_bar, false)
+                    .onPositive(new MaterialDialog.SingleButtonCallback() {
+                        @Override
+                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                            RatingBar ratingBar = (RatingBar) dialog.getCustomView().findViewById(R.id.idRate);
+                            rating[0] =Float.toString(ratingBar.getRating());
+                            RequestQueue queue= Volley.newRequestQueue(DetailLog.this);
+                            StringRequest request=new StringRequest(Request.Method.POST, url_rate, new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String s) {
+                                    Toast.makeText(DetailLog.this,"Rating envoyé",Toast.LENGTH_SHORT).show();
+
+                                }
+                            }, new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError volleyError) {
+                                    Toast.makeText(DetailLog.this,volleyError.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
+
+                                }
+                            })
+                            {
+                                @Override
+                                protected Map<String, String> getParams() throws AuthFailureError {
+                                    Map<String,String> map = new HashMap<String, String>();
+                                    map.put("rate", rating[0]);
+                                    map.put("id_log",logement.getId());
+                                    map.put("email",shared.getUserConnected());
+                                    return map;
+                                }
+                            };
+
+
+                            queue.add(request);
+                        }
+                    })
+                    .positiveText(R.string.note_button)
+                    .negativeText(R.string.annul_button)
+                    .build();
+
+            dialog.show();
+
+        }else{
+            login();
+        }
+
+
+
     }
     public void onClickComment(View view){
 
-        new MaterialDialog.Builder(this)
-                .title(R.string.commenter)
-                .customView(R.layout.custom_comment,true)
-                .positiveText(R.string.comment_button)
-                .negativeText(R.string.annul_button)
-                .show();
+      if(shared.isConnected()) {
+          final String[] avis = {null};
+          MaterialDialog dialog =new MaterialDialog.Builder(this)
+                  .title(R.string.commenter)
+                  .customView(R.layout.custom_comment, true)
+                  .onPositive(new MaterialDialog.SingleButtonCallback() {
+                      @Override
+                      public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                          TextView comment=(TextView)dialog.getCustomView().findViewById(R.id.commentaire);
+                          avis[0] =  comment.getText().toString();
+                          RequestQueue queue= Volley.newRequestQueue(DetailLog.this);
+                          StringRequest request=new StringRequest(Request.Method.POST, url_comment, new Response.Listener<String>() {
+                              @Override
+                              public void onResponse(String s) {
+                                  Toast.makeText(DetailLog.this,"Commentaire envoyé",Toast.LENGTH_SHORT).show();
+
+                              }
+                          }, new Response.ErrorListener() {
+                              @Override
+                              public void onErrorResponse(VolleyError volleyError) {
+                                  Toast.makeText(DetailLog.this,volleyError.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
+
+                              }
+                          })
+                          {
+                              @Override
+                              protected Map<String, String> getParams() throws AuthFailureError {
+                                  Map<String,String> map = new HashMap<String, String>();
+                                  map.put("comment", avis[0]);
+                                  map.put("id_log",logement.getId());
+                                  map.put("email",shared.getUserConnected());
+                                  return map;
+                              }
+                          };
+
+
+                          queue.add(request);
+
+                      }
+                  })
+                  .positiveText(R.string.comment_button)
+                  .negativeText(R.string.annul_button)
+                  .build();
+          dialog.show();
+
+      }else{
+          login();
+
+      }
     }
     public void onClickAgenda(View view){
 
@@ -144,26 +248,60 @@ public class DetailLog extends AppCompatActivity implements ViewPager.OnPageChan
 
         //Intent intent=new Intent(DetailLog.this,RendezVous.class);
         //startActivity(intent);
-        if (user.getStatus().equals("connected")){
+        if (shared.isConnected()){
+            final int[] numdate = {0};
             RequestQueue queue = queue= Volley.newRequestQueue(this);
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url_dates+"?id_log="+logement.getId(), null, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject jsonObject) {
                     Gson gson = new Gson();
-                    DateVisites dates_visite = gson.fromJson(jsonObject.toString(), DateVisites.class);
+                    final DateVisites dates_visite = gson.fromJson(jsonObject.toString(), DateVisites.class);
                     new MaterialDialog.Builder(DetailLog.this)
                             .title(R.string.rdv_desc)
                             .items(dates_visite.getListDates())
                             .itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallbackSingleChoice() {
                                 @Override
-                                public boolean onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
+                                public boolean onSelection(MaterialDialog dialog, View view, final int which, CharSequence text) {
                                     /**
                                      * If you use alwaysCallSingleChoiceCallback(), which is discussed below,
                                      * returning false here won't allow the newly selected radio button to actually be selected.
                                      **/
-
-
+                                    numdate[0]=which;
                                     return true;
+                                }
+                            })
+                            .onPositive(new MaterialDialog.SingleButtonCallback() {
+                                @Override
+                                public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+
+                                    RequestQueue queue= Volley.newRequestQueue(DetailLog.this);
+                                    StringRequest request=new StringRequest(Request.Method.POST, url_rendezvous, new Response.Listener<String>() {
+                                        @Override
+                                        public void onResponse(String s) {
+                                            Toast.makeText(DetailLog.this,"Rendez-vous envoyé",Toast.LENGTH_SHORT).show();
+
+                                        }
+                                    }, new Response.ErrorListener() {
+                                        @Override
+                                        public void onErrorResponse(VolleyError volleyError) {
+                                            Toast.makeText(DetailLog.this,volleyError.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
+
+                                        }
+                                    })
+                                    {
+                                        @Override
+                                        protected Map<String, String> getParams() throws AuthFailureError {
+                                            Map<String,String> map = new HashMap<String, String>();
+                                            map.put("date",dates_visite.getListDates().get(numdate[0]));
+                                            map.put("email",shared.getUserConnected());
+                                            map.put("id_log",logement.getId());
+                                            return map;
+                                        }
+                                    };
+
+
+                                    queue.add(request);
+
                                 }
                             })
                             .positiveText(R.string.rdv_btn)
@@ -266,6 +404,7 @@ public class DetailLog extends AppCompatActivity implements ViewPager.OnPageChan
         if (requestCode == 1) {
             if(resultCode == Activity.RESULT_OK){
                 user=(User) data.getSerializableExtra("user");
+                shared.saveConnectUser(user.getEmail());
             }
             if (resultCode == Activity.RESULT_CANCELED) {
                 //Write your code if there's no result

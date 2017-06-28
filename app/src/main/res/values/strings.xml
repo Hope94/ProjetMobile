@@ -13,7 +13,7 @@
     <string name="rdv_desc">Sélectionnez un rendez-vous</string>
     <string name="rdv_btn">Valider</string>
     <string name="annonce_nom">Annonce appartement alger</string>
-    <string name="text_date">"Vendredi du 13:00 à 16:00 21/04/2017"</string>
+    <string name="text_date">Vendredi du 13:00 à 16:00 21/04/2017</string>
     <string name="date1">%1$s</string>
     <string name="date2">%1$s</string>
 
@@ -57,10 +57,6 @@
     <string name="desc_dispo">Le 2 avril du 15 heure à 17 heure</string>
 
     <string name="large_text">
-       Vue superbe pour ce 5pcs de 103m2 au 3ème étage donnant sur jardin et comprenant: entrée, WC, cuisine, séjour double sur loggia, dégagement, salle d\'eau, dressing, salle de bains, 3 chambres, cave et parking.
-Copropriété de 410 lots
-
-Charges annuelles : 5220 euros.
     </string>
     <string name="action_settings">Settings</string>
 
@@ -71,8 +67,7 @@ Charges annuelles : 5220 euros.
         <item>@drawable/a2</item>
     </integer-array>
     <string name="settings">Settings</string>
-    <string name="lorem_ipsum">       Vue superbe pour ce 5pcs de 103m2 au 3ème étage donnant sur jardin et comprenant: entrée, WC, cuisine, séjour double sur loggia, dégagement, salle d\'eau, dressing, salle de bains, 3 chambres, cave et parking.
-Copropriété de 410 lots. Charges annuelles : 5220 euros.</string>
+    <string name="lorem_ipsum"></string>
     <string name="article_detail_more_info">More Info</string>
     <string name="samples_title">Hello title</string>
     <string name="samples_subhead">Hello Subhead</string>

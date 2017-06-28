@@ -1,5 +1,6 @@
 package com.example.nesrine.projetmobile;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -20,6 +22,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.RequestFuture;
 import com.android.volley.toolbox.Volley;
+import com.firebase.jobdispatcher.Constraint;
+import com.firebase.jobdispatcher.FirebaseJobDispatcher;
+import com.firebase.jobdispatcher.GooglePlayDriver;
+import com.firebase.jobdispatcher.Job;
+import com.firebase.jobdispatcher.RetryStrategy;
+import com.firebase.jobdispatcher.Trigger;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -55,10 +63,6 @@ public class ListRendezVous extends AppCompatActivity {
 
     }
     private void ajouterRendezVous() {
-       // RequestFuture<JSONArray> future = RequestFuture.newFuture();
-       // listRendezVous.add(new ObjetRendezVous("Imène11","Dim, 23 avril 2017","12:00 - 16:00","No validé"));
-       // listRendezVous.add(new ObjetRendezVous("Meriem87","Mar, 25 avril 2017","9:00 - 12:00","No validé"));
-       // listRendezVous.add(new ObjetRendezVous("Arhab99","Sam, 26 avril 2017","9:00 - 12:00","No validé"));
         RequestQueue queue= Volley.newRequestQueue(this);
         JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
             @Override
@@ -66,7 +70,25 @@ public class ListRendezVous extends AppCompatActivity {
                 listRendezVous=new ArrayList<ObjetRendezVous>();
                 Gson gson=new Gson();
                 listRendezVous= Arrays.asList(gson.fromJson(jsonArray.toString(), ObjetRendezVous[].class));
-                recyclerView.setAdapter(new RendezVousAdapter(listRendezVous));
+                recyclerView.setAdapter(new RendezVousAdapter(listRendezVous,new RendezVousAdapter.OnItemClickListener() {
+
+                    @Override
+                    public void onItemClick(View view, int position) {
+
+                        ///list item was clicked
+                       Toast.makeText(ListRendezVous.this,"Item CLicked",Toast.LENGTH_SHORT).show();
+                    /*    FirebaseJobDispatcher dispatcher=new FirebaseJobDispatcher(new GooglePlayDriver(view.getContext()));
+                        Job myJob=dispatcher.newJobBuilder()
+                                .setService(MyJobService.class)
+                                .setTrigger(Trigger.executionWindow(0,10))
+                                .setTag("my-unique-tag")
+                                .setConstraints(Constraint.ON_ANY_NETWORK)
+                                .setRetryStrategy(RetryStrategy.DEFAULT_EXPONENTIAL)
+                                .build();
+                        dispatcher.mustSchedule(myJob);*/
+
+                    }
+                }));
                // Toast.makeText(ListRendezVous.this,listRendezVous.get(1).getUserName(),Toast.LENGTH_SHORT).show();
             }
         },new Response.ErrorListener() {
@@ -109,6 +131,10 @@ public class ListRendezVous extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void validate(int i){
+
     }
 
 }

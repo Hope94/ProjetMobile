@@ -129,7 +129,7 @@ public class AnnoncesActivity extends AppCompatActivity  {
                     }
                 }));
             }
-        },new Response.ErrorListener() {
+        }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 Toast.makeText(AnnoncesActivity.this,volleyError.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
