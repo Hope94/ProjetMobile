@@ -32,278 +32,291 @@
                 android:src="@drawable/a1"
                 android:fitsSystemWindows="true"
                 app:layout_collapseMode="parallax" /> -->
+
+
             <android.support.v4.view.ViewPager
                 android:id="@+id/viewPageAndroid"
-
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_collapseMode="parallax"/>
+            <ImageView
+                android:id="@+id/detailimage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:visibility="visible"
                 android:fitsSystemWindows="true"
-                app:layout_collapseMode="parallax"></android.support.v4.view.ViewPager>
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/ic_cloud"
+                app:layout_collapseMode="parallax"/>
 
-            <com.chabbal.slidingdotsplash.SlidingSplashView
+
+
+
+          <!--<com.chabbal.slidingdotsplash.SlidingSplashView
                 android:id="@+id/splash"
                 android:layout_width="match_parent"
                 android:layout_height="240dp"
                 android:visibility="visible"
-                app:imageResources="@array/img_id_arr" />
-
-
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-
-        </android.support.design.widget.CollapsingToolbarLayout>
-
-    </android.support.design.widget.AppBarLayout>
-
-    <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:paddingTop="24dp">
+                app:imageResources="@array/img_id_arr" />-->
 
 
 
 
-                <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/card_margin"
-                android:layout_marginLeft="@dimen/card_margin"
-                android:layout_marginRight="@dimen/card_margin">
+           <android.support.v7.widget.Toolbar
+               android:id="@+id/toolbar"
+               android:layout_width="match_parent"
+               android:layout_height="?attr/actionBarSize"
+               app:layout_collapseMode="pin"
+               app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-                    <LinearLayout
-                        style="@style/Widget.CardContent1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center">
+       </android.support.design.widget.CollapsingToolbarLayout>
 
-                        <LinearLayout
-                            style="@style/Widget.CardContent1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:orientation="horizontal">
+   </android.support.design.widget.AppBarLayout>
 
+   <android.support.v4.widget.NestedScrollView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-                            <LinearLayout
-                                style="@style/Widget.CardContent"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-
-                                <ImageView
-                                    android:id="@+id/price"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:scaleType="centerCrop"
-                                    android:src="@drawable/ic_shortcut_price3" />
-
-                                <TextView
-                                    android:id="@+id/text_prix"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/prix"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Small" />
-                            </LinearLayout>
-
-
-                            <LinearLayout
-                                style="@style/Widget.CardContent"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-
-                                <ImageView
-                                    android:id="@+id/type"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:scaleType="centerCrop"
-                                    android:src="@drawable/ic_shortcut_type2" />
-
-                                <TextView
-                                    android:id="@+id/text_type"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center"
-                                    android:text="@string/type"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Small" />
-
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                style="@style/Widget.CardContent"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-
-                                <ImageView
-                                    android:id="@+id/region"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:scaleType="centerCrop"
-                                    android:src="@drawable/ic_shortcut_region3" />
-
-                                <TextView
-                                    android:id="@+id/text_region"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center"
-                                    android:text="@string/adr"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Small" />
-
-                            </LinearLayout>
-                        </LinearLayout>
-                    </LinearLayout>
-
-            </android.support.v7.widget.CardView>
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/card_margin"
-                android:layout_marginLeft="@dimen/card_margin"
-                android:layout_marginRight="@dimen/card_margin">
-
-                <LinearLayout
-                    style="@style/Widget.CardContent"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/text_desc"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
-
-                    <TextView
-                        android:id="@+id/textDesciptif"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/lorem_ipsum" />
-
-
-                </LinearLayout>
-
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/card_margin"
-                android:layout_marginLeft="@dimen/card_margin"
-                android:layout_marginRight="@dimen/card_margin">
-
-
-                <LinearLayout
-                    style="@style/Widget.CardContent1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center">
-
-                    <LinearLayout
-                        style="@style/Widget.CardContent1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            style="@style/Widget.CardContent1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-
-
-                            <at.markushi.ui.CircleButton
-                                android:layout_width="64dip"
-                                android:layout_height="64dip"
-                                android:src="@drawable/ic_goldstar"
-                                app:cb_color="@color/colorAccent"
-                                app:cb_pressedRingWidth="8dip"
-                                android:onClick="onClickRate"/>
-
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            style="@style/Widget.CardContent1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-
-                            <at.markushi.ui.CircleButton
-                                android:layout_width="64dip"
-                                android:layout_height="64dip"
-                                android:src="@drawable/ic_comment2"
-                                app:cb_color="@color/colorAccent"
-                                app:cb_pressedRingWidth="8dip"
-                                android:onClick="onClickComment"/>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            style="@style/Widget.CardContent1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-
-                            <at.markushi.ui.CircleButton
-                                android:layout_width="64dip"
-                                android:layout_height="64dip"
-                                android:src="@drawable/ic_calendar"
-                                app:cb_color="@color/colorAccent"
-                                app:cb_pressedRingWidth="8dip"
-                                android:onClick="onClickAgenda"/>
-
-                        </LinearLayout>
-                    </LinearLayout>
-
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:orientation="vertical"
+           android:paddingTop="24dp">
 
 
 
-        </LinearLayout>
 
-    </android.support.v4.widget.NestedScrollView>
+               <android.support.v7.widget.CardView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginBottom="@dimen/card_margin"
+               android:layout_marginLeft="@dimen/card_margin"
+               android:layout_marginRight="@dimen/card_margin">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/map_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
-        android:clickable="true"
-        android:src="@android:drawable/ic_dialog_map"
-        app:layout_anchor="@id/appbar"
-        app:layout_anchorGravity="bottom|right|end"
-        android:onClick="onClickMap"/>
+                   <LinearLayout
+                       style="@style/Widget.CardContent1"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:gravity="center">
 
-    <Button
-        android:id="@+id/rdv"
-        style="@android:style/Widget.Material.Button.Borderless"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:text="PRENDRE UN RENDEZ-VOUS"
-        android:textColor="@color/theme_window_background"
-        android:background="@color/colorAccent"
-        tools:targetApi="lollipop"
-        android:onClick="onClickRendezVous"
-       />
+                       <LinearLayout
+                           style="@style/Widget.CardContent1"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:gravity="center"
+                           android:orientation="horizontal">
+
+
+                           <LinearLayout
+                               style="@style/Widget.CardContent"
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content">
+
+                               <ImageView
+                                   android:id="@+id/price"
+                                   android:layout_width="match_parent"
+                                   android:layout_height="match_parent"
+                                   android:scaleType="centerCrop"
+                                   android:src="@drawable/ic_shortcut_price3" />
+
+                               <TextView
+                                   android:id="@+id/text_prix"
+                                   android:layout_width="wrap_content"
+                                   android:layout_height="wrap_content"
+                                   android:text="@string/prix"
+                                   android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+                           </LinearLayout>
+
+
+                           <LinearLayout
+                               style="@style/Widget.CardContent"
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content">
+
+                               <ImageView
+                                   android:id="@+id/type"
+                                   android:layout_width="match_parent"
+                                   android:layout_height="match_parent"
+                                   android:scaleType="centerCrop"
+                                   android:src="@drawable/ic_shortcut_type2" />
+
+                               <TextView
+                                   android:id="@+id/text_type"
+                                   android:layout_width="wrap_content"
+                                   android:layout_height="wrap_content"
+                                   android:gravity="center"
+                                   android:text="@string/type"
+                                   android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+
+                           </LinearLayout>
+
+                           <LinearLayout
+                               style="@style/Widget.CardContent"
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content">
+
+                               <ImageView
+                                   android:id="@+id/region"
+                                   android:layout_width="wrap_content"
+                                   android:layout_height="wrap_content"
+                                   android:scaleType="centerCrop"
+                                   android:src="@drawable/ic_shortcut_region3" />
+
+                               <TextView
+                                   android:id="@+id/text_region"
+                                   android:layout_width="match_parent"
+                                   android:layout_height="wrap_content"
+                                   android:gravity="center"
+                                   android:text="@string/adr"
+                                   android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+                           </LinearLayout>
+                       </LinearLayout>
+                   </LinearLayout>
+
+           </android.support.v7.widget.CardView>
+           <android.support.v7.widget.CardView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginBottom="@dimen/card_margin"
+               android:layout_marginLeft="@dimen/card_margin"
+               android:layout_marginRight="@dimen/card_margin">
+
+               <LinearLayout
+                   style="@style/Widget.CardContent"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content">
+
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:text="@string/text_desc"
+                       android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+                   <TextView
+                       android:id="@+id/textDesciptif"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:text="@string/lorem_ipsum" />
+
+
+               </LinearLayout>
+
+           </android.support.v7.widget.CardView>
+
+           <android.support.v7.widget.CardView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginBottom="@dimen/card_margin"
+               android:layout_marginLeft="@dimen/card_margin"
+               android:layout_marginRight="@dimen/card_margin">
+
+
+               <LinearLayout
+                   style="@style/Widget.CardContent1"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:gravity="center">
+
+                   <LinearLayout
+                       style="@style/Widget.CardContent1"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:gravity="center"
+                       android:orientation="horizontal">
+
+                       <LinearLayout
+                           style="@style/Widget.CardContent1"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content">
+
+
+                           <at.markushi.ui.CircleButton
+                               android:layout_width="64dip"
+                               android:layout_height="64dip"
+                               android:src="@drawable/ic_goldstar"
+                               app:cb_color="@color/colorAccent"
+                               app:cb_pressedRingWidth="8dip"
+                               android:onClick="onClickRate"/>
+
+
+                       </LinearLayout>
+
+                       <LinearLayout
+                           style="@style/Widget.CardContent1"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content">
+
+                           <at.markushi.ui.CircleButton
+                               android:layout_width="64dip"
+                               android:layout_height="64dip"
+                               android:src="@drawable/ic_comment2"
+                               app:cb_color="@color/colorAccent"
+                               app:cb_pressedRingWidth="8dip"
+                               android:onClick="onClickComment"/>
+
+                       </LinearLayout>
+
+                       <LinearLayout
+                           style="@style/Widget.CardContent1"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content">
+
+                           <at.markushi.ui.CircleButton
+                               android:layout_width="64dip"
+                               android:layout_height="64dip"
+                               android:src="@drawable/ic_calendar"
+                               app:cb_color="@color/colorAccent"
+                               app:cb_pressedRingWidth="8dip"
+                               android:onClick="onClickAgenda"/>
+
+                       </LinearLayout>
+                   </LinearLayout>
+
+               </LinearLayout>
+           </android.support.v7.widget.CardView>
+
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text=""
+               android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text=""
+               android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+
+
+       </LinearLayout>
+
+   </android.support.v4.widget.NestedScrollView>
+
+   <android.support.design.widget.FloatingActionButton
+       android:id="@+id/map_btn"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_margin="@dimen/fab_margin"
+       android:clickable="true"
+       android:src="@android:drawable/ic_dialog_map"
+       app:layout_anchor="@id/appbar"
+       app:layout_anchorGravity="bottom|right|end"
+       android:onClick="onClickMap"/>
+
+   <Button
+       android:id="@+id/rdv"
+       style="@android:style/Widget.Material.Button.Borderless"
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       android:layout_gravity="bottom"
+       android:text="PRENDRE UN RENDEZ-VOUS"
+       android:textColor="@color/theme_window_background"
+       android:background="@color/colorAccent"
+       tools:targetApi="lollipop"
+       android:onClick="onClickRendezVous"
+      />
 </android.support.design.widget.CoordinatorLayout>

@@ -25,7 +25,7 @@ import java.util.Map;
  */
 
 public class MyJobService extends JobService {
-    private String url="http://192.168.1.2:8080/postStatus";
+    private String url="http://192.168.43.71:8080/postStatus";
     private String id_log="001";
     private String status="valide";
     com.firebase.jobdispatcher.JobParameters job;

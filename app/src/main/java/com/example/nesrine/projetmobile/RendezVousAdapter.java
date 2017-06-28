@@ -7,7 +7,17 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Nesrine on 22/04/2017.
@@ -15,6 +25,7 @@ import java.util.List;
 
 public class RendezVousAdapter extends  RecyclerView.Adapter<MyRendezVousHolder>{
     public List<ObjetRendezVous> list;
+    private String url="http://192.168.43.71:8080/postStatus";
     private OnItemClickListener mOnItemClickListener;
 
 
@@ -35,8 +46,9 @@ public class RendezVousAdapter extends  RecyclerView.Adapter<MyRendezVousHolder>
 
     //c'est ici que nous allons remplir notre cellule avec le texte/image de chaque MyObjects
     @Override
-    public void onBindViewHolder(MyRendezVousHolder myViewHolder, final int position) {
+    public void onBindViewHolder(final MyRendezVousHolder myViewHolder, final int position) {
         final ObjetRendezVous myObject = list.get(position);
+        myViewHolder.bind(myObject);
         myViewHolder.container.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -49,7 +61,35 @@ public class RendezVousAdapter extends  RecyclerView.Adapter<MyRendezVousHolder>
 
             @Override
             public void onClick(View v) {
-                Toast.makeText(v.getContext(),"Accept CLicked",Toast.LENGTH_SHORT).show();
+
+                TextView status=(TextView)myViewHolder.container.findViewById(R.id.text_status);
+                status.setText("Valide   ");
+                RequestQueue queue= Volley.newRequestQueue(myViewHolder.container.getContext());
+                StringRequest request=new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        Toast.makeText(myViewHolder.container.getContext(),"Rendez-vous validé",Toast.LENGTH_SHORT).show();
+
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        Toast.makeText(myViewHolder.container.getContext(),volleyError.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
+
+                    }
+                })
+                {
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        Map<String,String> map = new HashMap<String, String>();
+                        map.put("id_rdv",myObject.getId_rdv());
+                        map.put("status","Valide   ");
+                        return map;
+                    }
+                };
+
+                queue.add(request);
+
             }
         });
 
@@ -57,12 +97,38 @@ public class RendezVousAdapter extends  RecyclerView.Adapter<MyRendezVousHolder>
 
             @Override
             public void onClick(View v) {
-                Toast.makeText(v.getContext(),"Reject CLicked",Toast.LENGTH_SHORT).show();
+                TextView status=(TextView)myViewHolder.container.findViewById(R.id.text_status);
+                status.setText("Invalide");
+                RequestQueue queue= Volley.newRequestQueue(myViewHolder.container.getContext());
+                StringRequest request=new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        Toast.makeText(myViewHolder.container.getContext(),"Rendez-vous non validé",Toast.LENGTH_SHORT).show();
+
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        Toast.makeText(myViewHolder.container.getContext(),volleyError.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
+
+                    }
+                })
+                {
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        Map<String,String> map = new HashMap<String, String>();
+                        map.put("id_rdv",myObject.getId_rdv());
+                        map.put("status","Invalide");
+                        return map;
+                    }
+                };
+
+                queue.add(request);
             }
         });
 
 
-        myViewHolder.bind(myObject);
+
     }
 
     @Override

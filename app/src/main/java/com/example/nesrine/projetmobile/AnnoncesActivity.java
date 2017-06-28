@@ -39,7 +39,7 @@ public class AnnoncesActivity extends AppCompatActivity  {
     private Spinner spinnerRegion;
     private String type;
     private String region;
-    private  String url="http://192.168.1.2:8080/getLogements";
+    private  String url="http://192.168.43.71:8080/getLogements";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,8 +64,8 @@ public class AnnoncesActivity extends AppCompatActivity  {
         spinnerRegion = (Spinner) findViewById(R.id.spinnerRegion);
         ArrayAdapter<String> spinnerRegionAdapter =
                 new ArrayAdapter<>(this, R.layout.spinner_item);
-        spinnerRegionAdapter.add("Alger-est");
-        spinnerRegionAdapter.add("Alger-ouest");
+        spinnerRegionAdapter.add("Alger");
+        spinnerRegionAdapter.add("Hydra");
 
         spinnerRegion.setAdapter(spinnerRegionAdapter);
 

@@ -15,12 +15,14 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.RequestFuture;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.firebase.jobdispatcher.Constraint;
 import com.firebase.jobdispatcher.FirebaseJobDispatcher;
@@ -35,13 +37,16 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 public class ListRendezVous extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private  String url="http://192.168.1.2:8080/getRendezVous";
+    private  String url="http://192.168.43.71:8080/getRendezVous";
+    private  String url_status="http://192.168.43.71:8080/postStatus";
     ProgressBar progressBar;
     Toolbar toolbar;
     private List<ObjetRendezVous> listRendezVous;
@@ -73,7 +78,7 @@ public class ListRendezVous extends AppCompatActivity {
                 recyclerView.setAdapter(new RendezVousAdapter(listRendezVous,new RendezVousAdapter.OnItemClickListener() {
 
                     @Override
-                    public void onItemClick(View view, int position) {
+                    public void onItemClick(View view, final int position) {
 
                         ///list item was clicked
                        Toast.makeText(ListRendezVous.this,"Item CLicked",Toast.LENGTH_SHORT).show();
@@ -86,6 +91,32 @@ public class ListRendezVous extends AppCompatActivity {
                                 .setRetryStrategy(RetryStrategy.DEFAULT_EXPONENTIAL)
                                 .build();
                         dispatcher.mustSchedule(myJob);*/
+
+                       /* RequestQueue queue= Volley.newRequestQueue(ListRendezVous.this);
+                        StringRequest request=new StringRequest(Request.Method.POST, url_status, new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String s) {
+                                Toast.makeText(ListRendezVous.this,s,Toast.LENGTH_SHORT).show();
+
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError volleyError) {
+                                Toast.makeText(ListRendezVous.this,volleyError.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
+
+                            }
+                        })
+                        {
+                            @Override
+                            protected Map<String, String> getParams() throws AuthFailureError {
+                                Map<String,String> map = new HashMap<String, String>();
+                                map.put("id_rdv",listRendezVous.get(position).getId_rdv());
+                                map.put("status","Valide");
+                                return map;
+                            }
+                        };
+
+                        queue.add(request); */
 
                     }
                 }));

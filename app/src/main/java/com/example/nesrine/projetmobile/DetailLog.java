@@ -57,11 +57,11 @@ public class DetailLog extends AppCompatActivity implements ViewPager.OnPageChan
     private List<String> dates;
     private User user;
     private String connected="FAILED";
-    private String url="http://192.168.1.2:8080/getDetailLogement";
-    private String url_dates="http://192.168.1.2:8080/getDates";
-    private String url_rendezvous="http://192.168.1.2:8080/postRendezVous";
-    private String url_rate="http://192.168.1.2:8080/postRate";
-    private String url_comment="http://192.168.1.2:8080/postComment";
+    private String url="http://192.168.43.71:8080/getDetailLogement";
+    private String url_dates="http://192.168.43.71:8080/getDates";
+    private String url_rendezvous="http://192.168.43.71:8080/postRendezVous";
+    private String url_rate="http://192.168.43.71:8080/postRate";
+    private String url_comment="http://192.168.43.71:8080/postComment";
     private SharedPref shared;
 
 
@@ -90,10 +90,11 @@ public class DetailLog extends AppCompatActivity implements ViewPager.OnPageChan
 
        // list_dates.setAdapter(adapter);
         // Button btn_map= (Button) findViewById(R.id.map_btn);
-        SlidingSplashView splashView  = (SlidingSplashView) findViewById(R.id.splash);
+        //SlidingSplashView splashView  = (SlidingSplashView) findViewById(R.id.splash);
 
-        splashView.addOnPageChangeListener(this);
+        //splashView.addOnPageChangeListener(this);
         textSummary=(TextView) findViewById(R.id.textDesciptif);
+        detailImage=(ImageView)findViewById(R.id.detailimage);
         logement = (Logement) getIntent().getSerializableExtra("logement");
         displayBasicDetail();
         getLogementDetails();
@@ -107,8 +108,6 @@ public class DetailLog extends AppCompatActivity implements ViewPager.OnPageChan
     }
     public void onClickRate(View view){
         if(shared.isConnected()) {
-
-
             final String[] rating = {null};
             MaterialDialog dialog = new MaterialDialog.Builder(this)
                     .title(R.string.noter)
@@ -359,11 +358,24 @@ public class DetailLog extends AppCompatActivity implements ViewPager.OnPageChan
             @Override
             public void onResponse(JSONObject jsonObject) {
                 Gson gson = new Gson();
-                Logement logementDetail = gson.fromJson(jsonObject.toString(), Logement.class);
+                final Logement logementDetail = gson.fromJson(jsonObject.toString(), Logement.class);
                 textSummary.setText(logementDetail.getDescriptif());
-                /*Glide.with(DetailLog.this).load(logementDetail.getListDetailImages()[0])
+
+                Glide.with(DetailLog.this).load(logementDetail.getListDetailImages()[0])
                         .placeholder(R.drawable.ic_cloud).
-                        skipMemoryCache(true).into(detailImage);*/
+                        skipMemoryCache(true).into(detailImage);
+                final int[] i = {1};
+                detailImage.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Glide.with(DetailLog.this).load(logementDetail.getListDetailImages()[i[0]])
+                                .placeholder(R.drawable.ic_cloud).
+                                skipMemoryCache(true).into(detailImage);
+                        if(i[0]==1) i[0] =0;
+                        else  i[0]=1;
+                    }
+                });
             }
         }, new Response.ErrorListener() {
             @Override
